@@ -9,6 +9,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'adaptive-images.uooucdn.com.br',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

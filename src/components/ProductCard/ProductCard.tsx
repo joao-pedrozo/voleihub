@@ -16,7 +16,7 @@ export default function ProductCard() {
           Busque os melhores tênis dentro do seu orçamento!
         </p>
         <button className="mt-4 bg-yellow-400 py-2 px-6 rounded-md font-medium">
-          <Link href="/products">Ver produtos</Link>
+          <Link href="/c/tenis">Ver produtos</Link>
         </button>
       </div>
     </div>

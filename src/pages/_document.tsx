@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body>
+      <body className="bg-[url('https://assets.production.linktr.ee/profiles/_next/static/images/background-desktop-95ff07dcd891255a69dcda75b9232793.png')]">
         <Header />
         <Main />
         <NextScript />

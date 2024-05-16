@@ -1,6 +1,5 @@
-import Image from "next/image";
+import Collection from "@/components/Collection/Collection";
 import { Inter } from "next/font/google";
-import ProductCard from "@/components/ProductCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,20 +9,15 @@ export default function Home() {
       <main
         className={`flex flex-col items-center justify-between ${inter.className}`}
       >
-        <h2 className="text-3xl text-yellow-400 font-bold">
-          Qual produto você busca?
-        </h2>
+        <button className="bg-white py-3 px-10 rounded-full font-bold disabled hover:bg-slate-100">
+          Store
+        </button>
 
-        <nav className="mt-12">
-          <ul className="flex gap-6">
-            <li>
-              <ProductCard />
-            </li>
-            <li>
-              <ProductCard />
-            </li>
-          </ul>
-        </nav>
+        <ul>
+          <li>
+            <Collection />
+          </li>
+        </ul>
       </main>
     </div>
   );

@@ -14,7 +14,7 @@ export default function CollectionProduct({
   url,
 }: CollectionProductProps) {
   return (
-    <div className="bg-white w-[400px] cursor-pointer rounded-lg">
+    <div className="bg-white w-[300px] lg:w-[320px] cursor-pointer rounded-lg">
       <div className="relative group bg-white !w-full !aspect-[1/1] !max-w-full rounded-lg">
         <Image className="rounded-lg" src={image} alt="Coleção 1" fill />
       </div>

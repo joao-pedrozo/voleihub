@@ -9,10 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 export default function About() {
   return (
     <main
-      className={`text-white flex flex-col items-center ${inter.className}`}
+      className={`text-white flex flex-col items-center px-8 ${inter.className}`}
     >
-      <div className="grid grid-cols-2 justify-center max-w-[900px] mt-8 gap-8">
-        <div className="w-full bg-[url('/images/volei-1.png')] bg-no-repeat bg-center min-h-full h-full"></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 justify-center max-w-[900px] mt-8 gap-8">
+        <div className="w-full bg-[url('/images/avatar-2.jpg')] bg-no-repeat bg-center min-h-full aspect-[1/0.5] sm:h-full"></div>
         <div className="w-full">
           <h2 className="text-4xl font-bold mb-4">Bem-vindo</h2>
 
@@ -34,7 +34,7 @@ export default function About() {
           esporte. Eles estão totalmente obcecados em trazer a você os melhores
           produtos do mercado.
         </p>
-        <ul className="grid grid-cols-2 gap-4 mt-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
           <TeamMember
             name="Mateus"
             role="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -60,7 +60,7 @@ export default function About() {
 
       <section className="max-w-[900px] mt-16 text-center text-black">
         <h2 className="font-bold text-4xl mb-8 text-white">Depoimentos</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-white p-8 rounded-lg">
             <p className="text-lg font-medium">
               &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed

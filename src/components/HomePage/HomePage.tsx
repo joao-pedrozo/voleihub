@@ -16,10 +16,11 @@ export default function HomePage() {
       {currentTab === "home" && (
         <div className="flex flex-col items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-            {/* Ball Section - Full width on first row */}
             <div className="bg-white p-6 rounded-lg md:col-span-2">
-              <h2 className="text-2xl font-bold mb-2">Ball</h2>
-              <p className="mb-4">Top-notch balls ideal for champions</p>
+              <h2 className="text-2xl font-bold mb-2">Tênis</h2>
+              <p className="mb-4">
+                Entre no mundo dos campeões com os melhores tênis.
+              </p>
               <img
                 src="/images/c-thumb-1.jpg"
                 alt="Ball Image"

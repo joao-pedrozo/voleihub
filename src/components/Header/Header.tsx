@@ -13,7 +13,7 @@ export default function Header() {
         <div className="rounded-full mt-8 w-28 h-28 bg-gradient-to-r from-amber-500 to-pink-500 flex justify-center items-center">
           <span className="text-4xl">VH</span>
         </div>
-        <span className="mt-4 text-xl font-bold text-white">@voleihub</span>
+        <h1 className="text-4xl font-bold text-white mt-4">VoleiHub</h1>
         <span className="text-white font-medium mt-1 text-center">
           Encontre os melhores produtos para a sua prática ✨
         </span>

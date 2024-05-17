@@ -63,17 +63,17 @@ export default function About() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white p-8 rounded-lg">
             <p className="text-lg font-medium">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
               vestibulum, nunc in ultrices aliquam, nisl nunc lacinia arcu, id
-              ullamcorper justo nisl id nunc."
+              ullamcorper justo nisl id nunc.&quot;
             </p>
             <p className="mt-4 font-semibold">- John Doe</p>
           </div>
           <div className="bg-white p-8 rounded-lg">
             <p className="text-lg font-medium">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
               vestibulum, nunc in ultrices aliquam, nisl nunc lacinia arcu, id
-              ullamcorper justo nisl id nunc."
+              ullamcorper justo nisl id nunc.&quot;
             </p>
             <p className="mt-4 font-semibold">- Jane Smith</p>
           </div>

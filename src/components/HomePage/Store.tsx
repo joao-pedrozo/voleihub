@@ -22,7 +22,7 @@ function ProductCollection({
 }: ProductCollectionProps) {
   return (
     <div
-      className={`bg-white p-6 rounded-lg ${className}`}
+      className={`bg-neutral-100 hover:bg-neutral-200 transition-all p-6 rounded-lg cursor-pointer ${className}`}
       onClick={() => setDisplayProductOverlay(true)}
     >
       <h2 className="text-2xl font-bold mb-2">{title}</h2>

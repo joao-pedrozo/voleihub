@@ -1,0 +1,24 @@
+{
+  "availableFilters": [
+    {
+      "id": 1,
+      "name": "Tração"
+    },
+    {
+      "id": 1,
+      "name": "Impulsão"
+    },
+    {
+      "id": 1,
+      "name": "Conforto"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Asics Gel Lyte III",
+      "price": 120,
+      "image": "/images/c-thumb-2.jpg"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <main
-      className={`flex flex-col items-center justify-between ${inter.className}`}
+      className={`flex flex-col mb-28 items-center justify-between ${inter.className}`}
     >
       <Store />
     </main>

@@ -101,46 +101,16 @@ export default function ProductOverlay({
           </button>
 
           <ul className="mt-4 xl:grid xl:grid-cols-3 lg:flex-row gap-6">
-            <li className="my-4">
-              <CollectionProduct
-                image="/images/p-1.webp"
-                price={288.99}
-                title="Asics Gel Lyte III"
-                url="/"
-              />
-            </li>
-            <li className="my-4">
-              <CollectionProduct
-                image="/images/p-1.webp"
-                price={250.99}
-                title="Nike Air Max 90"
-                url="/"
-              />
-            </li>
-            <li className="my-4">
-              <CollectionProduct
-                image="/images/p-1.webp"
-                price={233.44}
-                title="Adidas Superstar"
-                url="/"
-              />
-            </li>
-            <li className="my-4">
-              <CollectionProduct
-                image="/images/p-1.webp"
-                price={233.44}
-                title="Adidas Superstar"
-                url="/"
-              />
-            </li>
-            <li className="my-4">
-              <CollectionProduct
-                image="/images/p-1.webp"
-                price={233.44}
-                title="Adidas Superstar"
-                url="/"
-              />
-            </li>
+            {products.map((product) => (
+              <li key={product.id} className="my-4">
+                <CollectionProduct
+                  image={product.image}
+                  price={product.price}
+                  title={product.title}
+                  url="https://google.com"
+                />
+              </li>
+            ))}
           </ul>
         </div>
       </div>

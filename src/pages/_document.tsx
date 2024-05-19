@@ -6,7 +6,6 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body className="min-h-screen bg-[url('/images/bg-3.jpg')] bg-no-repeat bg-cover bg-center">
-        <Header />
         <Main />
         <NextScript />
       </body>

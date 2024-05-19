@@ -76,6 +76,7 @@ function Filter({
             name={filter.name}
             min="1"
             max="5"
+            // @ts-ignore
             value={selectedFilters[filter.slug]}
             onChange={(event) => {
               setSelectedFilters({

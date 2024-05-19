@@ -22,9 +22,9 @@
       "title": "Asics Gel Lyte III",
       "price": 120,
       "image": "/images/c-thumb-2.jpg",
-      "tracao": 5,
-      "impulsao": 4,
-      "conforto": 5 
+      "tracao": 3,
+      "impulsao": 3,
+      "conforto": 3 
     }
   ]
 }

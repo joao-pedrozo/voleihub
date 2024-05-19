@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Tração",
-      "slug": "tracao,"
+      "slug": "tracao"
     },
     {
       "id": 1,
@@ -22,104 +22,9 @@
       "title": "Asics Gel Lyte III",
       "price": 120,
       "image": "/images/c-thumb-2.jpg",
-      "characteristics": [
-        {
-          "id": 1,
-          "name": "Tração",
-          "slug": "tracao",
-          "value": "5"
-        },
-        {
-          "id": 2,
-          "name": "Impulsão",
-          "slug": "impulsao",
-          "value": "1"
-        },
-        {
-          "id": 3,
-          "name": "Conforto",
-          "slug": "conforto",
-          "value": "2"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Asics Gel Lyte V",
-      "price": 130,
-      "image": "/images/c-thumb-2.jpg",
-      "characteristics": [
-        {
-          "id": 1,
-          "name": "Tração",
-          "slug": "tracao",
-          "value": "4"
-        },
-        {
-          "id": 2,
-          "name": "Impulsão",
-          "slug": "impulsao",
-          "value": "2"
-        },
-        {
-          "id": 3,
-          "name": "Conforto",
-          "slug": "conforto",
-          "value": "3"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Asics Gel Lyte VI",
-      "price": 140,
-      "image": "/images/c-thumb-2.jpg",
-      "characteristics": [
-        {
-          "id": 1,
-          "name": "Tração",
-          "slug": "tracao",
-          "value": "3"
-        },
-        {
-          "id": 2,
-          "name": "Impulsão",
-          "slug": "impulsao",
-          "value": "3"
-        },
-        {
-          "id": 3,
-          "name": "Conforto",
-          "slug": "conforto",
-          "value": "4"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Asics Gel Lyte VII",
-      "price": 150,
-      "image": "/images/c-thumb-2.jpg",
-      "characteristics": [
-        {
-          "id": 1,
-          "name": "Tração",
-          "slug": "tracao",
-          "value": "2"
-        },
-        {
-          "id": 2,
-          "name": "Impulsão",
-          "slug": "impulsao",
-          "value": "4"
-        },
-        {
-          "id": 3,
-          "name": "Conforto",
-          "slug": "conforto",
-          "value": "5"
-        }
-      ]
+      "tracao": 5,
+      "impulsao": 4,
+      "conforto": 5 
     }
   ]
 }

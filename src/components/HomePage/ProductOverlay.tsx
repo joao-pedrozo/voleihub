@@ -3,7 +3,7 @@ import MOCK from "./mock.json";
 import { useEffect, useState } from "react";
 import React from "react";
 
-const { availableFilters, products } = MOCK;
+const { availableFilters } = MOCK;
 
 interface ProductOverlayProps {
   setDisplayProductOverlay: (value: boolean) => void;
@@ -11,12 +11,28 @@ interface ProductOverlayProps {
 
 function FilterMobileOverlay({
   setFilterOverlay,
+  selectedFilters,
+  setSelectedFilters,
 }: {
   setFilterOverlay: (value: boolean) => void;
+  selectedFilters: {
+    tracao: number;
+    impulsao: number;
+    conforto: number;
+  };
+  setSelectedFilters: (value: {
+    tracao: number;
+    impulsao: number;
+    conforto: number;
+  }) => void;
 }) {
   return (
     <div className="absolute backdrop-blur-2xl text-center justify-center min-h-screen flex w-full mx-64">
-      <Filter setFilterOverlay={setFilterOverlay} />
+      <Filter
+        setFilterOverlay={setFilterOverlay}
+        selectedFilters={selectedFilters}
+        setSelectedFilters={setSelectedFilters}
+      />
     </div>
   );
 }
@@ -24,9 +40,21 @@ function FilterMobileOverlay({
 function Filter({
   className,
   setFilterOverlay,
+  selectedFilters,
+  setSelectedFilters,
 }: {
   className?: string;
   setFilterOverlay: (value: boolean) => void;
+  selectedFilters: {
+    tracao: number;
+    impulsao: number;
+    conforto: number;
+  };
+  setSelectedFilters: (value: {
+    tracao: number;
+    impulsao: number;
+    conforto: number;
+  }) => void;
 }) {
   return (
     <div
@@ -48,6 +76,13 @@ function Filter({
             name={filter.name}
             min="1"
             max="5"
+            value={selectedFilters[filter.slug]}
+            onChange={(event) => {
+              setSelectedFilters({
+                ...selectedFilters,
+                [filter.slug]: parseInt(event.target.value),
+              });
+            }}
           />
         </div>
       ))}
@@ -66,6 +101,12 @@ export default function ProductOverlay({
 }: ProductOverlayProps) {
   const [filterOverlay, setFilterOverlay] = useState(false);
   const parentRef = React.useRef<HTMLDivElement>(null);
+  const [products, setProducts] = useState(MOCK.products);
+  const [selectedFilters, setSelectedFilters] = useState({
+    tracao: 1,
+    impulsao: 1,
+    conforto: 1,
+  });
 
   useEffect(() => {
     if (filterOverlay) {
@@ -74,6 +115,14 @@ export default function ProductOverlay({
       parentRef.current!.style.overflow = "auto";
     }
   }, [filterOverlay]);
+
+  const filteredProducts = products.filter((product) => {
+    return (
+      product.tracao >= selectedFilters.tracao &&
+      product.impulsao >= selectedFilters.impulsao &&
+      product.conforto >= selectedFilters.conforto
+    );
+  });
 
   return (
     <div
@@ -88,6 +137,8 @@ export default function ProductOverlay({
         <Filter
           className="hidden xl:block"
           setFilterOverlay={setFilterOverlay}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
         />
         <div className="flex flex-col text-center mt-12">
           <span className="text-black font-bold text-2xl">Tênis</span>
@@ -101,7 +152,7 @@ export default function ProductOverlay({
           </button>
 
           <ul className="mt-4 xl:grid xl:grid-cols-3 lg:flex-row gap-6">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <li key={product.id} className="my-4">
                 <CollectionProduct
                   image={product.image}
@@ -115,7 +166,11 @@ export default function ProductOverlay({
         </div>
       </div>
       {filterOverlay && (
-        <FilterMobileOverlay setFilterOverlay={setFilterOverlay} />
+        <FilterMobileOverlay
+          setFilterOverlay={setFilterOverlay}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+        />
       )}
     </div>
   );

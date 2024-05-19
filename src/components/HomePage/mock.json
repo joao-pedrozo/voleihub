@@ -25,6 +25,69 @@
       "tracao": 3,
       "impulsao": 3,
       "conforto": 3 
+    },
+    {
+      "id": 2,
+      "title": "Adidas NMD",
+      "price": 150,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 3,
+      "impulsao": 3,
+      "conforto": 3 
+    },
+    {
+      "id": 3,
+      "title": "Nike Air Max 90",
+      "price": 100,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 3,
+      "impulsao": 3,
+      "conforto": 3 
+    },
+    {
+      "id": 4,
+      "title": "Puma Suede",
+      "price": 80,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 5,
+      "impulsao": 5,
+      "conforto": 5
+    },
+    {
+      "id": 5,
+      "title": "Reebok Classic",
+      "price": 90,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 1,
+      "impulsao": 1,
+      "conforto": 1 
+    },
+    {
+      "id": 6,
+      "title": "Vans Old Skool",
+      "price": 70,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 5,
+      "impulsao": 5,
+      "conforto": 5 
+    },
+    {
+      "id": 7,
+      "title": "Converse All Star",
+      "price": 60,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 2,
+      "impulsao": 3,
+      "conforto": 4 
+    },
+    {
+      "id": 8,
+      "title": "New Balance 574",
+      "price": 110,
+      "image": "/images/c-thumb-2.jpg",
+      "tracao": 5,
+      "impulsao": 5,
+      "conforto": 5 
     }
   ]
 }

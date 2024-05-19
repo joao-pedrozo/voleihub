@@ -1,9 +1,40 @@
+/* eslint-disable @next/next/no-img-element */
 import ProductOverlay from "./ProductOverlay";
-import Collection from "@/components/Collection/Collection";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+
+interface ProductCollectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  setDisplayProductOverlay: (value: boolean) => void;
+  title: string;
+  description: string;
+  image: string;
+}
+
+function ProductCollection({
+  setDisplayProductOverlay,
+  description,
+  image,
+  title,
+  className,
+  ...rest
+}: ProductCollectionProps) {
+  return (
+    <div
+      className={`bg-white p-6 rounded-lg ${className}`}
+      onClick={() => setDisplayProductOverlay(true)}
+    >
+      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+      <p className="mb-4">{description}</p>
+      <img
+        src={image}
+        alt="Ball Image"
+        className="w-full h-48 object-cover rounded-lg"
+      />
+    </div>
+  );
+}
 
 export default function Store() {
   const [displayProductOverlay, setDisplayProductOverlay] = useState(false);
@@ -22,32 +53,34 @@ export default function Store() {
         <ProductOverlay setDisplayProductOverlay={setDisplayProductOverlay} />
       )}
 
-      <ul className="flex flex-col gap-8 mt-10">
-        <li onClick={() => setDisplayProductOverlay(true)}>
-          <Collection
-            image1="/images/c-thumb-1.jpg"
-            image2="/images/c-thumb-2.jpg"
-            title="Coleção 1"
-            length={28}
-          />
-        </li>
-        <li onClick={() => setDisplayProductOverlay(true)}>
-          <Collection
-            image1="/images/c-thumb-1.jpg"
-            image2="/images/c-thumb-2.jpg"
-            title="Coleção 2"
-            length={28}
-          />
-        </li>
-        <li onClick={() => setDisplayProductOverlay(true)}>
-          <Collection
-            image1="/images/c-thumb-1.jpg"
-            image2="/images/c-thumb-2.jpg"
-            title="Coleção 3"
-            length={28}
-          />
-        </li>
-      </ul>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <ProductCollection
+          setDisplayProductOverlay={setDisplayProductOverlay}
+          className="md:col-span-2"
+          title="Tênis"
+          description="Os melhores tênis que você pode encontrar."
+          image="/images/c-thumb-1.jpg"
+        />
+        <ProductCollection
+          setDisplayProductOverlay={setDisplayProductOverlay}
+          title="Basketball"
+          description="The best basketball you will ever play with."
+          image="/images/c-thumb-1.jpg"
+        />
+        <ProductCollection
+          setDisplayProductOverlay={setDisplayProductOverlay}
+          title="Basketball"
+          description="The best basketball you will ever play with."
+          image="/images/c-thumb-1.jpg"
+        />
+        <ProductCollection
+          setDisplayProductOverlay={setDisplayProductOverlay}
+          className="md:col-span-2"
+          title="Basketball"
+          description="The best basketball you will ever play with."
+          image="/images/c-thumb-1.jpg"
+        />
+      </div>
     </>
   );
 }

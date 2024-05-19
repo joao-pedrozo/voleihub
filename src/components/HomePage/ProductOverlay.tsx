@@ -129,18 +129,19 @@ export default function ProductOverlay({
     <div
       className="lg:pt-0 fixed inset-0 top-0 z-[10002] flex h-full w-full backdrop-blur-2xl bg-white/70 opacity-100 item-center justify-center overflow-scroll"
       ref={parentRef}
-      onClick={() => setDisplayProductOverlay(false)}
+      onClick={(event) => {
+        if (!filterOverlay) {
+          setDisplayProductOverlay(false);
+          return;
+        }
+
+        setFilterOverlay(false);
+      }}
     >
       <div
         onClick={(event) => event.stopPropagation()}
         className="flex gap-8 h-fit"
       >
-        <Filter
-          className="hidden xl:block"
-          setFilterOverlay={setFilterOverlay}
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
-        />
         <div className="flex flex-col text-center mt-12">
           <span className="text-black font-bold text-2xl">Tênis</span>
           <span className="text-lg">28 produtos</span>
@@ -152,18 +153,26 @@ export default function ProductOverlay({
             Filtros
           </button>
 
-          <ul className="mt-4 xl:grid xl:grid-cols-3 lg:flex-row gap-6">
-            {filteredProducts.map((product) => (
-              <li key={product.id} className="my-4">
-                <CollectionProduct
-                  image={product.image}
-                  price={product.price}
-                  title={product.title}
-                  url="https://google.com"
-                />
-              </li>
-            ))}
-          </ul>
+          <div className="flex gap-8 mt-4 px-8">
+            <Filter
+              className="hidden xl:block"
+              setFilterOverlay={setFilterOverlay}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+            />
+            <ul className="xl:grid xl:grid-cols-3 lg:flex-row gap-8">
+              {filteredProducts.map((product) => (
+                <li key={product.id} className="mb-4">
+                  <CollectionProduct
+                    image={product.image}
+                    price={product.price}
+                    title={product.title}
+                    url="https://google.com"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
       {filterOverlay && (

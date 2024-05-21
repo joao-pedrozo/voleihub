@@ -17,9 +17,9 @@ interface ProductOverlayProps {
   setDisplayProductOverlay: (value: boolean) => void;
 }
 
-async function fetchProducts() {
+async function fetchProducts({ categorySlug }: { categorySlug: string }) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products?populate=photo`,
+    `${process.env.NEXT_PUBLIC_API_URL}/products?populate[0]=photo&filters[category][slug][$eq]=${categorySlug}`,
     {
       method: "GET",
       headers: {
@@ -139,7 +139,7 @@ export default function ProductOverlay({
 
   useEffect(() => {
     async function getProducts() {
-      const data = await fetchProducts();
+      const data = await fetchProducts({ categorySlug: "tenis" });
 
       setProducts(
         data.map((product: any) => ({

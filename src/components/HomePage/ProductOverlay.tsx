@@ -5,8 +5,35 @@ import React from "react";
 
 const { availableFilters } = MOCK;
 
+interface Product {
+  id: string;
+  image: string;
+  price: number;
+  title: string;
+  url: string;
+}
+
 interface ProductOverlayProps {
   setDisplayProductOverlay: (value: boolean) => void;
+}
+
+async function fetchProducts() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products?populate=photo`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+    }
+  );
+
+  const { data } = await response.json();
+
+  console.log(data);
+
+  return data;
 }
 
 function FilterMobileOverlay({
@@ -102,7 +129,8 @@ export default function ProductOverlay({
 }: ProductOverlayProps) {
   const [filterOverlay, setFilterOverlay] = useState(false);
   const parentRef = React.useRef<HTMLDivElement>(null);
-  const [products, setProducts] = useState(MOCK.products);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedFilters, setSelectedFilters] = useState({
     tracao: 1,
     impulsao: 1,
@@ -110,6 +138,24 @@ export default function ProductOverlay({
   });
 
   useEffect(() => {
+    async function getProducts() {
+      const data = await fetchProducts();
+
+      setProducts(
+        data.map((product: any) => ({
+          id: product.id,
+          image: product.attributes.photo.data.attributes.url,
+          price: product.attributes.price,
+          title: product.attributes.title,
+          url: product.attributes.url,
+        }))
+      );
+
+      setIsLoading(false);
+    }
+
+    getProducts();
+
     if (filterOverlay) {
       parentRef.current!.style.overflow = "hidden";
     } else {
@@ -117,19 +163,13 @@ export default function ProductOverlay({
     }
   }, [filterOverlay]);
 
-  const filteredProducts = products.filter((product) => {
-    return (
-      product.tracao >= selectedFilters.tracao &&
-      product.impulsao >= selectedFilters.impulsao &&
-      product.conforto >= selectedFilters.conforto
-    );
-  });
+  const filteredProducts = products;
 
   return (
     <div
       className="lg:pt-0 fixed inset-0 top-0 z-[10002] flex h-full w-full backdrop-blur-2xl bg-white/70 opacity-100 item-center justify-center overflow-scroll"
       ref={parentRef}
-      onClick={(event) => {
+      onClick={() => {
         if (!filterOverlay) {
           setDisplayProductOverlay(false);
           return;
@@ -160,18 +200,24 @@ export default function ProductOverlay({
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
             />
-            <ul className="xl:grid xl:grid-cols-3 lg:flex-row gap-8">
-              {filteredProducts.map((product) => (
-                <li key={product.id} className="mb-4">
-                  <CollectionProduct
-                    image={product.image}
-                    price={product.price}
-                    title={product.title}
-                    url="https://google.com"
-                  />
-                </li>
-              ))}
-            </ul>
+            {isLoading ? (
+              <span>Loading...</span>
+            ) : (
+              <ul className="xl:grid xl:grid-cols-3 lg:flex-row gap-8">
+                {filteredProducts.map((product) => (
+                  <li key={product.id} className="mb-4">
+                    <CollectionProduct
+                      image={`${
+                        process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL ?? ""
+                      }${product.image}`}
+                      price={product.price}
+                      title={product.title}
+                      url={product.url}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

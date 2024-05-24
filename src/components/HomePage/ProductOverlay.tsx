@@ -15,6 +15,7 @@ interface Product {
 
 interface ProductOverlayProps {
   setDisplayProductOverlay: (value: boolean) => void;
+  categorySlug: string;
 }
 
 async function fetchProducts({ categorySlug }: { categorySlug: string }) {
@@ -126,6 +127,7 @@ function Filter({
 
 export default function ProductOverlay({
   setDisplayProductOverlay,
+  categorySlug,
 }: ProductOverlayProps) {
   const [filterOverlay, setFilterOverlay] = useState(false);
   const parentRef = React.useRef<HTMLDivElement>(null);
@@ -139,7 +141,7 @@ export default function ProductOverlay({
 
   useEffect(() => {
     async function getProducts() {
-      const data = await fetchProducts({ categorySlug: "tenis" });
+      const data = await fetchProducts({ categorySlug });
 
       setProducts(
         data.map((product: any) => ({

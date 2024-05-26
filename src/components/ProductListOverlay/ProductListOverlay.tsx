@@ -100,6 +100,12 @@ export default function ProductListOverlay({
         className="flex gap-8 h-fit"
       >
         <div className="flex flex-col text-center mt-12">
+          <span
+            className="font-bold mb-4 text-lg text-[#fc03f0] underline"
+            onClick={() => setDisplayProductOverlay(false)}
+          >
+            <span className="mr-1">👈</span> voltar para a home
+          </span>
           <span className="text-black font-bold text-2xl">Tênis</span>
           <span className="text-lg">28 produtos</span>
 

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import ProductOverlay from "./ProductOverlay";
+import ProductListOverlay from "../ProductListOverlay";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 
@@ -84,7 +84,7 @@ export default function CategoriesList() {
   return (
     <>
       {displayProductOverlay && (
-        <ProductOverlay
+        <ProductListOverlay
           categorySlug="tenis"
           setDisplayProductOverlay={setDisplayProductOverlay}
         />

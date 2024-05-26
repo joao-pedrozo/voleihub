@@ -32,8 +32,6 @@ async function fetchProducts({ categorySlug }: { categorySlug: string }) {
 
   const { data } = await response.json();
 
-  console.log(data);
-
   return data;
 }
 
@@ -141,19 +139,23 @@ export default function ProductOverlay({
 
   useEffect(() => {
     async function getProducts() {
-      const data = await fetchProducts({ categorySlug });
+      try {
+        const data = await fetchProducts({ categorySlug });
 
-      setProducts(
-        data.map((product: any) => ({
-          id: product.id,
-          image: product.attributes.photo.data.attributes.url,
-          price: product.attributes.price,
-          title: product.attributes.title,
-          url: product.attributes.url,
-        }))
-      );
-
-      setIsLoading(false);
+        setProducts(
+          data.map((product: any) => ({
+            id: product.id,
+            image: product.attributes.photo.data.attributes.url,
+            price: product.attributes.price,
+            title: product.attributes.title,
+            url: product.attributes.url,
+          }))
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     getProducts();

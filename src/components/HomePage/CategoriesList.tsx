@@ -50,8 +50,6 @@ async function fetchCategories() {
 
   const { data } = await response.json();
 
-  console.log(data);
-
   return data;
 }
 
@@ -63,10 +61,15 @@ export default function CategoriesList() {
 
   useEffect(() => {
     async function getCategories() {
-      const data = await fetchCategories();
+      try {
+        const data = await fetchCategories();
 
-      setCategories(data);
-      setIsLoading(false);
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     getCategories();
@@ -99,7 +102,7 @@ export default function CategoriesList() {
             image="/images/c-thumb-1.jpg"
           /> */}
           <>
-            {categories.map((category) => (
+            {categories.map((category: any) => (
               <ProductCollection
                 key={category.id}
                 setDisplayProductOverlay={setDisplayProductOverlay}

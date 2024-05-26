@@ -27,7 +27,7 @@ export default function Header() {
           <ul
             className="flex font-bold rounded-full"
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.15);",
+              backgroundColor: "rgba(0, 0, 0, 0.15)",
             }}
           >
             <Link

@@ -11,11 +11,13 @@ export default function MobileFilterOverlay({
     tracao: number;
     impulsao: number;
     conforto: number;
+    amortecimento: number;
   };
   setSelectedFilters: (value: {
     tracao: number;
     impulsao: number;
     conforto: number;
+    amortecimento: number;
   }) => void;
   availableFilters: { id: number; name: string; slug: string }[];
 }) {

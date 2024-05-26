@@ -12,6 +12,10 @@ interface Product {
   price: number;
   title: string;
   url: string;
+  tracao: number;
+  impulsao: number;
+  conforto: number;
+  amortecimento: number;
 }
 
 interface ProductOverlayProps {
@@ -48,6 +52,7 @@ export default function ProductListOverlay({
     tracao: 1,
     impulsao: 1,
     conforto: 1,
+    amortecimento: 1,
   });
 
   useEffect(() => {
@@ -62,6 +67,10 @@ export default function ProductListOverlay({
             price: product.attributes.price,
             title: product.attributes.title,
             url: product.attributes.url,
+            tracao: product.attributes.tracao,
+            impulsao: product.attributes.impulsao,
+            conforto: product.attributes.conforto,
+            amortecimento: product.attributes.amortecimento,
           }))
         );
       } catch (error) {
@@ -73,6 +82,8 @@ export default function ProductListOverlay({
 
     getProducts();
 
+    console.log(selectedFilters);
+
     if (filterOverlay) {
       parentRef.current!.style.overflow = "hidden";
     } else {
@@ -80,7 +91,13 @@ export default function ProductListOverlay({
     }
   }, [filterOverlay]);
 
-  const filteredProducts = products;
+  const filteredProducts = products.filter(
+    (product) =>
+      product.tracao >= selectedFilters.tracao &&
+      product.impulsao >= selectedFilters.impulsao &&
+      product.conforto >= selectedFilters.conforto &&
+      product.amortecimento >= selectedFilters.amortecimento
+  );
 
   return (
     <div

@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Conforto",
       "slug": "conforto"
+    },
+    {
+      "id": 4,
+      "name": "Amortecimento",
+      "slug": "amortecimento"
     }
   ],
   "products": [

@@ -120,7 +120,7 @@ export default function ProductListOverlay({
       >
         <div className="flex flex-col text-center mt-12">
           <span
-            className="font-bold mb-4 text-lg text-[#fc03f0] underline"
+            className="font-bold mb-4 text-lg text-[#fc03f0] cursor-pointer underline"
             onClick={() => setDisplayProductOverlay(false)}
           >
             <span className="mr-1">👈</span> voltar para a home
@@ -135,7 +135,7 @@ export default function ProductListOverlay({
             Filtros
           </button>
 
-          <div className="flex gap-8 mt-4 px-8">
+          <div className="flex gap-8 mt-4 px-4 lg:px-8">
             <Filter
               className="hidden xl:block"
               setFilterOverlay={setFilterOverlay}
@@ -146,9 +146,9 @@ export default function ProductListOverlay({
             {isLoading ? (
               <span>Loading...</span>
             ) : (
-              <ul className="xl:grid xl:grid-cols-3 lg:flex-row gap-8">
+              <ul className="grid grid-cols-2 lg:grid lg:grid-cols-3 lg:flex-row gap-4 lg:gap-8">
                 {filteredProducts.map((product) => (
-                  <li key={product.id} className="mb-4">
+                  <li key={product.id} className="mb-1 lg:mb-4">
                     <CollectionProduct
                       image={`${
                         process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL ?? ""

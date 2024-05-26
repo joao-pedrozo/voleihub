@@ -3,6 +3,7 @@ import Filter from "./Filter";
 import CollectionProduct from "./CollectionProduct";
 import MobileFilterOverlay from "./MobileFilterOverlay";
 import MOCK from "../HomePage/mock.json";
+import ProductDetailsOverlay from "./ProductDetailsOverlay";
 
 const { availableFilters } = MOCK;
 
@@ -84,8 +85,6 @@ export default function ProductListOverlay({
 
     getProducts();
 
-    console.log(selectedFilters);
-
     if (filterOverlay) {
       parentRef.current!.style.overflow = "hidden";
     } else {
@@ -164,14 +163,7 @@ export default function ProductListOverlay({
           </div>
         </div>
       </div>
-      {filterOverlay && (
-        <MobileFilterOverlay
-          setFilterOverlay={setFilterOverlay}
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
-          availableFilters={availableFilters}
-        />
-      )}
+      {filterOverlay && <ProductDetailsOverlay />}
     </div>
   );
 }

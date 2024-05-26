@@ -20,7 +20,7 @@ export default function Header() {
           <span className="text-4xl">VH</span>
         </div>
         <h1 className="text-4xl font-bold text-white mt-4">VoleiHub</h1>
-        <span className="text-white my-2">
+        <span className="text-white my-2 text-center">
           Encontre os melhores produtos para a sua prática ✨
         </span>
         <nav className="mt-2">

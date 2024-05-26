@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Filter from "./Filter";
-import CollectionProduct from "../CollectionProduct";
+import CollectionProduct from "./CollectionProduct";
 import MobileFilterOverlay from "./MobileFilterOverlay";
 import MOCK from "../HomePage/mock.json";
 

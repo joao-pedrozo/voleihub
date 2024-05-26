@@ -20,7 +20,7 @@ interface Product {
 
 interface ProductOverlayProps {
   setDisplayProductOverlay: (value: boolean) => void;
-  categorySlug: string;
+  categorySlug: string | null;
 }
 
 async function fetchProducts({ categorySlug }: { categorySlug: string }) {
@@ -58,6 +58,8 @@ export default function ProductListOverlay({
   useEffect(() => {
     async function getProducts() {
       try {
+        if (!categorySlug) return;
+
         const data = await fetchProducts({ categorySlug });
 
         setProducts(
@@ -89,7 +91,7 @@ export default function ProductListOverlay({
     } else {
       parentRef.current!.style.overflow = "auto";
     }
-  }, [filterOverlay]);
+  }, [filterOverlay, categorySlug]);
 
   const filteredProducts = products.filter(
     (product) =>

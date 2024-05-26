@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 interface ProductCollectionProps extends React.HTMLAttributes<HTMLDivElement> {
   setDisplayProductOverlay: (value: boolean) => void;
+  setSelectedCategory: () => void;
   title: string;
   description: string;
   image: string;
@@ -18,12 +19,16 @@ function ProductCollection({
   image,
   title,
   className,
+  setSelectedCategory,
   ...rest
 }: ProductCollectionProps) {
   return (
     <div
       className={`bg-neutral-100 hover:bg-neutral-200 transition-all p-6 rounded-lg cursor-pointer ${className}`}
-      onClick={() => setDisplayProductOverlay(true)}
+      onClick={() => {
+        setDisplayProductOverlay(true);
+        setSelectedCategory();
+      }}
       {...rest}
     >
       <h2 className="text-2xl font-bold mb-2">{title}</h2>
@@ -57,7 +62,7 @@ export default function CategoriesList() {
   const [displayProductOverlay, setDisplayProductOverlay] = useState(false);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
     async function getCategories() {
@@ -85,7 +90,7 @@ export default function CategoriesList() {
     <>
       {displayProductOverlay && (
         <ProductListOverlay
-          categorySlug="tenis"
+          categorySlug={selectedCategory}
           setDisplayProductOverlay={setDisplayProductOverlay}
         />
       )}
@@ -94,13 +99,6 @@ export default function CategoriesList() {
         <p>Loading...</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-          {/* <ProductCollection
-            setDisplayProductOverlay={setDisplayProductOverlay}
-            className="md:col-span-2"
-            title="Tênis"
-            description="Os melhores tênis que você pode encontrar."
-            image="/images/c-thumb-1.jpg"
-          /> */}
           <>
             {categories.map((category: any) => (
               <ProductCollection
@@ -109,6 +107,9 @@ export default function CategoriesList() {
                 title={category.attributes.name}
                 description={category.attributes.description}
                 image={`${process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL}${category.attributes.thumbnail.data.attributes.url}`}
+                setSelectedCategory={() =>
+                  setSelectedCategory(category.attributes.slug)
+                }
               />
             ))}
           </>

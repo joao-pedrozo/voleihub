@@ -1,0 +1,196 @@
+import { useEffect, useRef, useState } from "react";
+import Filter from "./Filter";
+import CollectionProduct from "./CollectionProduct";
+import MobileFilterOverlay from "./MobileFilterOverlay";
+import MOCK from "../HomePage/mock.json";
+import ProductDetailsOverlay from "./ProductDetailsOverlay";
+
+const { availableFilters } = MOCK;
+
+export interface Product {
+  id: number;
+  image: string;
+  price: number;
+  title: string;
+  url: string;
+  tracao: number;
+  description: string;
+  impulsao: number;
+  conforto: number;
+  amortecimento: number;
+}
+
+interface ProductOverlayProps {
+  setDisplayProductOverlay: (value: boolean) => void;
+  categorySlug: string | null;
+}
+
+async function fetchProducts({ categorySlug }: { categorySlug: string }) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products?populate[0]=photo&filters[category][slug][$eq]=${categorySlug}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+    }
+  );
+
+  const { data } = await response.json();
+
+  return data;
+}
+
+export default function ProductListOverlay({
+  categorySlug,
+  setDisplayProductOverlay,
+}: ProductOverlayProps) {
+  const [filterOverlay, setFilterOverlay] = useState(false);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedFilters, setSelectedFilters] = useState({
+    tracao: 1,
+    impulsao: 1,
+    conforto: 1,
+    amortecimento: 1,
+  });
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    async function getProducts() {
+      try {
+        if (!categorySlug) return;
+
+        const data = await fetchProducts({ categorySlug });
+
+        setProducts(
+          data.map((product: any) => ({
+            id: product.id,
+            image: product.attributes.photo.data.attributes.url,
+            price: product.attributes.price,
+            title: product.attributes.title,
+            url: product.attributes.url,
+            tracao: product.attributes.tracao,
+            impulsao: product.attributes.impulsao,
+            conforto: product.attributes.conforto,
+            amortecimento: product.attributes.amortecimento,
+          }))
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    getProducts();
+
+    if (filterOverlay) {
+      parentRef.current!.style.overflow = "hidden";
+    } else {
+      parentRef.current!.style.overflow = "auto";
+    }
+  }, [filterOverlay, categorySlug]);
+
+  const filteredProducts = products.filter(
+    (product) =>
+      product.tracao >= selectedFilters.tracao &&
+      product.impulsao >= selectedFilters.impulsao &&
+      product.conforto >= selectedFilters.conforto &&
+      product.amortecimento >= selectedFilters.amortecimento
+  );
+
+  const selectedProduct = products.find(
+    (product) => product.id === selectedProductId
+  );
+
+  return (
+    <div
+      className="lg:pt-0 fixed inset-0 top-0 z-[10002] flex h-full w-full backdrop-blur-2xl bg-white/70 opacity-100 item-center justify-center overflow-scroll"
+      ref={parentRef}
+      onClick={() => {
+        if (!filterOverlay && !selectedProductId) {
+          setDisplayProductOverlay(false);
+          return;
+        }
+
+        setFilterOverlay(false);
+      }}
+    >
+      <div
+        onClick={(event) => event.stopPropagation()}
+        className="flex gap-8 h-fit"
+      >
+        <div className="flex flex-col text-center mt-12">
+          <span
+            className="font-bold mb-4 text-lg text-[#fc03f0] cursor-pointer underline"
+            onClick={() => setDisplayProductOverlay(false)}
+          >
+            <span className="mr-1">👈</span> voltar para a home
+          </span>
+          <span className="text-black font-bold text-2xl">Tênis</span>
+          <span className="text-lg">28 produtos</span>
+
+          <button
+            className="block xl:hidden bg-white p-2 rounded-full my-4"
+            onClick={() => setFilterOverlay(true)}
+          >
+            Filtros
+          </button>
+
+          <div className="flex gap-8 mt-4 px-4 lg:px-8">
+            <Filter
+              className="hidden xl:block"
+              setFilterOverlay={setFilterOverlay}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+              availableFilters={availableFilters}
+            />
+            {isLoading ? (
+              <span>Loading...</span>
+            ) : (
+              <ul className="grid grid-cols-2 lg:grid lg:grid-cols-3 lg:flex-row gap-4 lg:gap-8">
+                {filteredProducts.map((product) => (
+                  <li key={product.id} className="mb-1 lg:mb-4">
+                    <CollectionProduct
+                      image={`${
+                        process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL ?? ""
+                      }${product.image}`}
+                      price={product.price}
+                      title={product.title}
+                      url={product.url}
+                      setSelectedProductId={setSelectedProductId}
+                      produtId={product.id}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+      {selectedProductId && (
+        <ProductDetailsOverlay
+          image={selectedProduct?.image ?? ""}
+          title={selectedProduct?.title ?? ""}
+          description={selectedProduct?.description ?? ""}
+          price={selectedProduct?.price ?? 0}
+          url={selectedProduct?.url ?? ""}
+          setSelectedProductId={setSelectedProductId}
+        />
+      )}
+      {filterOverlay && (
+        <MobileFilterOverlay
+          setFilterOverlay={setFilterOverlay}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+          availableFilters={availableFilters}
+        />
+      )}
+    </div>
+  );
+}

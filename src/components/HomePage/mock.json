@@ -6,14 +6,19 @@
       "slug": "tracao"
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Impulsão",
       "slug": "impulsao"
     },
     {
-      "id": 1,
+      "id": 3,
       "name": "Conforto",
       "slug": "conforto"
+    },
+    {
+      "id": 4,
+      "name": "Amortecimento",
+      "slug": "amortecimento"
     }
   ],
   "products": [

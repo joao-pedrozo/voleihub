@@ -7,13 +7,14 @@ import ProductDetailsOverlay from "./ProductDetailsOverlay";
 
 const { availableFilters } = MOCK;
 
-interface Product {
-  id: string;
+export interface Product {
+  id: number;
   image: string;
   price: number;
   title: string;
   url: string;
   tracao: number;
+  description: string;
   impulsao: number;
   conforto: number;
   amortecimento: number;
@@ -55,6 +56,9 @@ export default function ProductListOverlay({
     conforto: 1,
     amortecimento: 1,
   });
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     async function getProducts() {
@@ -100,12 +104,16 @@ export default function ProductListOverlay({
       product.amortecimento >= selectedFilters.amortecimento
   );
 
+  const selectedProduct = products.find(
+    (product) => product.id === selectedProductId
+  );
+
   return (
     <div
       className="lg:pt-0 fixed inset-0 top-0 z-[10002] flex h-full w-full backdrop-blur-2xl bg-white/70 opacity-100 item-center justify-center overflow-scroll"
       ref={parentRef}
       onClick={() => {
-        if (!filterOverlay) {
+        if (!filterOverlay && !selectedProductId) {
           setDisplayProductOverlay(false);
           return;
         }
@@ -155,6 +163,8 @@ export default function ProductListOverlay({
                       price={product.price}
                       title={product.title}
                       url={product.url}
+                      setSelectedProductId={setSelectedProductId}
+                      produtId={product.id}
                     />
                   </li>
                 ))}
@@ -163,7 +173,16 @@ export default function ProductListOverlay({
           </div>
         </div>
       </div>
-      {filterOverlay && <ProductDetailsOverlay />}
+      {selectedProductId && (
+        <ProductDetailsOverlay
+          image={selectedProduct?.image ?? ""}
+          title={selectedProduct?.title ?? ""}
+          description={selectedProduct?.description ?? ""}
+          price={selectedProduct?.price ?? 0}
+          url={selectedProduct?.url ?? ""}
+          setSelectedProductId={setSelectedProductId}
+        />
+      )}
     </div>
   );
 }

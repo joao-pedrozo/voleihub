@@ -183,6 +183,14 @@ export default function ProductListOverlay({
           setSelectedProductId={setSelectedProductId}
         />
       )}
+      {filterOverlay && (
+        <MobileFilterOverlay
+          setFilterOverlay={setFilterOverlay}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+          availableFilters={availableFilters}
+        />
+      )}
     </div>
   );
 }

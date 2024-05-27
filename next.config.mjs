@@ -21,6 +21,12 @@ const nextConfig = {
         port: "1337",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "voleihub-cms-production.up.railway.app",
+        port: "",
+        pathname: "/**",
+      }
     ],
   },
 };

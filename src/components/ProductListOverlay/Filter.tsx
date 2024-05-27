@@ -23,7 +23,7 @@ export default function Filter({
 }) {
   return (
     <div
-      className={`bg-white p-8 lg:p-12 rounded-lg self-center xl:self-baseline max-w-[360px] lg:max-w-[460px] ${className}`}
+      className={`bg-white p-8 lg:p-12 xl:p-8 rounded-lg self-center xl:self-baseline max-w-[360px] lg:max-w-[460px] xl:max-w-[360px] ${className}`}
       onClick={(event) => event.stopPropagation()}
     >
       <h2 className="text-2xl font-bold">Filtros</h2>

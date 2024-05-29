@@ -89,12 +89,12 @@ export default function ProductListOverlay({
 
     getProducts();
 
-    if (filterOverlay) {
+    if (filterOverlay || selectedProductId) {
       parentRef.current!.style.overflow = "hidden";
     } else {
       parentRef.current!.style.overflow = "auto";
     }
-  }, [filterOverlay, categorySlug]);
+  }, [filterOverlay, categorySlug, selectedProductId]);
 
   const filteredProducts = products.filter(
     (product) =>

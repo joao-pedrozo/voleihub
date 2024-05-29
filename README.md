@@ -42,3 +42,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Referências
 
 - https://omniacollections.com/
+
+## TODO
+
+- Contagem corretas de produto
+- Corrigir blur no mobile
+- Corrigir scroll no mobile

@@ -106,7 +106,9 @@ export default function CategoriesList() {
                 setDisplayProductOverlay={setDisplayProductOverlay}
                 title={category.attributes.name}
                 description={category.attributes.description}
-                image={`${process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL}${category.attributes.thumbnail.data.attributes.url}`}
+                image={`${process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL ?? ""}${
+                  category.attributes.thumbnail.data.attributes.url
+                }`}
                 setSelectedCategory={() =>
                   setSelectedCategory(category.attributes.slug)
                 }

@@ -36,7 +36,9 @@ export default function ProductDetailsOverlay({
           <div className="relative group h-fit !w-full !aspect-[1/0.8] !max-w-full rounded-lg">
             <Image
               className="rounded-md"
-              src={`${process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL}${image}`}
+              src={`${
+                process.env.NEXT_PUBLIC_IMAGE_PROVIDER_URL ?? ""
+              }${image}`}
               alt="Padrão"
               fill
             />

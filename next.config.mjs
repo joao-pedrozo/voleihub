@@ -26,7 +26,13 @@ const nextConfig = {
         hostname: "voleihub-cms-production.up.railway.app",
         port: "",
         pathname: "/**",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -64,6 +64,10 @@ export default function CategoriesList() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const currentCategory: any = categories.find(
+    (category: any) => category.attributes.slug === selectedCategory
+  );
+
   useEffect(() => {
     async function getCategories() {
       try {
@@ -91,6 +95,7 @@ export default function CategoriesList() {
       {displayProductOverlay && (
         <ProductListOverlay
           categorySlug={selectedCategory}
+          title={currentCategory?.attributes.name}
           setDisplayProductOverlay={setDisplayProductOverlay}
         />
       )}

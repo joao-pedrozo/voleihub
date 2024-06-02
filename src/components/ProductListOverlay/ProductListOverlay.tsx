@@ -23,6 +23,7 @@ export interface Product {
 interface ProductOverlayProps {
   setDisplayProductOverlay: (value: boolean) => void;
   categorySlug: string | null;
+  title: string | null;
 }
 
 async function fetchProducts({ categorySlug }: { categorySlug: string }) {
@@ -45,6 +46,7 @@ async function fetchProducts({ categorySlug }: { categorySlug: string }) {
 export default function ProductListOverlay({
   categorySlug,
   setDisplayProductOverlay,
+  title,
 }: ProductOverlayProps) {
   const [filterOverlay, setFilterOverlay] = useState(false);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -134,7 +136,9 @@ export default function ProductListOverlay({
           >
             <span className="mr-1">👈</span> voltar para a home
           </span>
-          <span className="text-black font-bold text-2xl">Tênis</span>
+          <span className="text-black font-bold text-2xl">
+            {title ?? "Coleção de produtos"}
+          </span>
           <span className="text-lg">28 produtos</span>
 
           <button

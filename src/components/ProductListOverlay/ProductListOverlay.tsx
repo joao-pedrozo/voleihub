@@ -93,9 +93,11 @@ export default function ProductListOverlay({
 
     if (filterOverlay || selectedProductId) {
       parentRef.current!.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
       parentRef.current?.classList.remove("backdrop-blur-2xl");
     } else {
       parentRef.current!.style.overflow = "auto";
+      document.body.style.overflow = "auto";
       parentRef.current?.classList.add("backdrop-blur-2xl");
     }
   }, [filterOverlay, categorySlug, selectedProductId]);

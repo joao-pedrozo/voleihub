@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
 import { Inter } from "next/font/google";
@@ -16,11 +17,14 @@ export default function Header() {
       className={`p-4 flex justify-center items-center ${inter.className}`}
     >
       <div className="flex flex-col items-center ">
-        <div className="rounded-full mt-8 w-28 h-28 bg-gradient-to-r from-amber-500 to-pink-500 flex justify-center items-center">
-          <span className="text-4xl">VH</span>
-        </div>
-        <h1 className="text-4xl font-bold text-white mt-4">VoleiHub</h1>
-        <span className="text-white my-2 text-center">
+        <h1 className="text-4xl font-bold text-white my-4">
+          <img
+            src="/images/logo-w.png"
+            alt="Logo"
+            className="w-[120px] h-[120px] lg:w-[160px] lg:h-[160px]"
+          />
+        </h1>
+        <span className="text-white my-1 text-center text-md lg:text-lg">
           Encontre os melhores produtos para a sua prática ✨
         </span>
         <nav className="mt-2">

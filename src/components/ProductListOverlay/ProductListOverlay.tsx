@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
 import Filter from "./Filter";
 import CollectionProduct from "./CollectionProduct";
@@ -91,13 +92,17 @@ export default function ProductListOverlay({
 
     getProducts();
 
-    if (filterOverlay || selectedProductId) {
+    if (filterOverlay || selectedProductId || categorySlug) {
       parentRef.current!.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
-      parentRef.current?.classList.remove("backdrop-blur-2xl");
     } else {
       parentRef.current!.style.overflow = "auto";
       document.body.style.overflow = "auto";
+    }
+
+    if (filterOverlay || (selectedProductId && !categorySlug)) {
+      parentRef.current?.classList.remove("backdrop-blur-2xl");
+    } else {
       parentRef.current?.classList.add("backdrop-blur-2xl");
     }
   }, [filterOverlay, categorySlug, selectedProductId]);
@@ -129,15 +134,19 @@ export default function ProductListOverlay({
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="flex gap-8 h-fit"
+        className="flex px-4 gap-8 h-fit"
       >
-        <div className="flex flex-col text-center mt-12">
-          <span
-            className="font-bold mb-4 text-lg text-[#fc03f0] cursor-pointer underline"
+        <div className="flex flex-col text-center mt-20">
+          <button
+            className="absolute right-[28px] top-[32px] lg:right-[48px] bg-zinc-100 w-[42px] h-[42px] flex justify-center items-center rounded-full"
             onClick={() => setDisplayProductOverlay(false)}
           >
-            <span className="mr-1">👈</span> voltar para a home
-          </span>
+            <img
+              src="/icons/x.svg"
+              alt="Ícone de fechamento"
+              className="w-[24px] h-[24px]"
+            />
+          </button>
           <span className="text-black font-bold text-2xl">
             {title ?? "Coleção de produtos"}
           </span>
@@ -150,7 +159,7 @@ export default function ProductListOverlay({
             Filtros
           </button>
 
-          <div className="flex gap-8 mt-4 px-4 lg:px-8">
+          <div className="flex gap-10 mt-4 lg:px-8">
             <Filter
               className="hidden xl:block"
               setFilterOverlay={setFilterOverlay}

@@ -96,6 +96,7 @@ export default function CategoriesList() {
         <ProductListOverlay
           categorySlug={selectedCategory}
           title={currentCategory?.attributes.name}
+          description={currentCategory?.attributes.description}
           setDisplayProductOverlay={setDisplayProductOverlay}
         />
       )}

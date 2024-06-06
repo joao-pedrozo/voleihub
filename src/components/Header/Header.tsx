@@ -43,8 +43,8 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/sobre"
-              className={`px-6 py-3 rounded-full ${
+              href="/"
+              className={`px-6 py-3 opacity-80 rounded-full ${
                 isSobre ? "bg-white" : "text-white"
               }`}
             >

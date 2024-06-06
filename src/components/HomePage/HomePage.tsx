@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <main
-      className={`flex flex-col mb-28 items-center justify-between ${inter.className}`}
+      className={`flex px-4 flex-col mb-28 items-center justify-between ${inter.className}`}
     >
       <CategoriesList />
     </main>

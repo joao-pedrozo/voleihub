@@ -95,12 +95,16 @@ export default function ProductListOverlay({
 
     getProducts();
 
-    if (filterOverlay || selectedProductId || categorySlug) {
-      parentRef.current!.style.overflow = "hidden";
+    if (categorySlug) {
       document.body.style.overflow = "hidden";
     } else {
-      parentRef.current!.style.overflow = "auto";
       document.body.style.overflow = "auto";
+    }
+
+    if (filterOverlay || selectedProductId) {
+      parentRef.current!.style.overflow = "hidden";
+    } else {
+      parentRef.current!.style.overflow = "scroll";
     }
 
     if (filterOverlay || (selectedProductId && !categorySlug)) {

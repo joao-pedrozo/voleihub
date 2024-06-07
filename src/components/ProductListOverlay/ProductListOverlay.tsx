@@ -117,6 +117,8 @@ export default function ProductListOverlay({
       product.amortecimento >= selectedFilters.amortecimento
   );
 
+  const useFilter = categorySlug === "tenis";
+
   const selectedProduct = products.find(
     (product) => product.id === selectedProductId
   );
@@ -154,26 +156,30 @@ export default function ProductListOverlay({
           </span>
           <span className="text-lg">{description ?? ""}</span>
 
-          <button
-            className="block xl:hidden bg-white p-2 rounded-full my-4"
-            onClick={() => setFilterOverlay(true)}
-          >
-            Filtros
-          </button>
+          {useFilter && (
+            <button
+              className="block xl:hidden bg-white p-2 rounded-full my-4"
+              onClick={() => setFilterOverlay(true)}
+            >
+              Filtros
+            </button>
+          )}
 
           <div className="flex gap-10 mt-4 lg:px-8">
-            <Filter
-              className="hidden xl:block"
-              setFilterOverlay={setFilterOverlay}
-              selectedFilters={selectedFilters}
-              setSelectedFilters={setSelectedFilters}
-              availableFilters={availableFilters}
-            />
+            {useFilter && (
+              <Filter
+                className="hidden xl:block"
+                setFilterOverlay={setFilterOverlay}
+                selectedFilters={selectedFilters}
+                setSelectedFilters={setSelectedFilters}
+                availableFilters={availableFilters}
+              />
+            )}
             {isLoading ? (
               <span>Loading...</span>
             ) : (
               <ul className="grid grid-cols-2 lg:grid lg:grid-cols-3 lg:flex-row gap-4 lg:gap-8">
-                {filteredProducts.map((product) => (
+                {(useFilter ? filteredProducts : products).map((product) => (
                   <li key={product.id} className="mb-1 lg:mb-4">
                     <CollectionProduct
                       image={`${

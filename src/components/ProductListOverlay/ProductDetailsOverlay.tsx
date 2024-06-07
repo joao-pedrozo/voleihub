@@ -47,7 +47,6 @@ export default function ProductDetailsOverlay({
         <div className="mt-4 flex flex-col gap-1 text-center">
           <span className="block font-bold text-2xl">{title}</span>
 
-          <span className="line-clamp-2 text-md">{description}</span>
           <span className="text-lg font-bold">
             {Intl.NumberFormat("pt-BR", {
               style: "currency",

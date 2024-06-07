@@ -76,6 +76,7 @@ export default function ProductListOverlay({
           data.map((product: any) => ({
             id: product.id,
             image: product.attributes.photo.data.attributes.url,
+            description: product.attributes.description,
             price: product.attributes.price,
             title: product.attributes.title,
             url: product.attributes.url,

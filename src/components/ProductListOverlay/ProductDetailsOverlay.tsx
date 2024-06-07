@@ -33,7 +33,7 @@ export default function ProductDetailsOverlay({
     >
       <div className="bg-white h-fit p-9 mx-8 rounded-xl self-center w-[420px]">
         <div className="w-full relative h-fit">
-          <div className="relative group h-fit !w-full !aspect-[1/0.8] !max-w-full rounded-lg">
+          <div className="relative group h-fit !w-full !aspect-[1/1] !max-w-full rounded-lg">
             <Image
               className="rounded-md"
               src={`${

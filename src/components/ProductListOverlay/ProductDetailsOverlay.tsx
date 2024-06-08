@@ -9,6 +9,7 @@ interface ProductDetailsOverlayProps {
   price: number;
   url: string;
   setSelectedProductId: (id: number | null) => void;
+  scrollPosition: number;
 }
 
 export default function ProductDetailsOverlay({
@@ -18,6 +19,7 @@ export default function ProductDetailsOverlay({
   price,
   url,
   setSelectedProductId,
+  scrollPosition,
 }: ProductDetailsOverlayProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +27,7 @@ export default function ProductDetailsOverlay({
     <div
       className="absolute backdrop-blur-3xl justify-center min-h-screen flex w-full mx-64"
       ref={overlayRef}
+      style={{ top: `${scrollPosition}px` }}
       onClick={(event) => {
         if (event.target === overlayRef.current) {
           setSelectedProductId(null);

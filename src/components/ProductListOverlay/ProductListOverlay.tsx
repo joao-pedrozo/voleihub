@@ -65,6 +65,24 @@ export default function ProductListOverlay({
     null
   );
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parentRef.current) {
+        console.log(parentRef.current.scrollTop);
+
+        setScrollPosition(parentRef.current.scrollTop);
+      }
+    };
+
+    parentRef.current?.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => parentRef.current?.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     async function getProducts() {
       try {
@@ -211,6 +229,7 @@ export default function ProductListOverlay({
           price={selectedProduct?.price ?? 0}
           url={selectedProduct?.url ?? ""}
           setSelectedProductId={setSelectedProductId}
+          scrollPosition={scrollPosition}
         />
       )}
       {filterOverlay && (
